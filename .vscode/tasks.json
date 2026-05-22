@@ -1,0 +1,48 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build OpenGL",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/nologo",
+                "/MT",
+
+                "/I",
+                "C:/Users/20261GR.TII_I0015/Documents/opengl/include",
+
+                "${workspaceFolder}/src/glad.c",
+                "${file}",
+
+                "/link",
+
+                "/LIBPATH:C:/Users/20261GR.TII_I0015/Documents/opengl/lib",
+
+                "glfw3_mt.lib",
+                "opengl32.lib",
+                "user32.lib",
+                "gdi32.lib",
+                "shell32.lib",
+
+                "/OUT:${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+
+            "problemMatcher": [
+                "$msCompile"
+            ],
+
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+
+    "version": "2.0.0"
+}
