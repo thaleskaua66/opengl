@@ -23,6 +23,27 @@ int main(int argc, char const *argv[])
     }
     glfwMakeContextCurrent(window);
 
+    // Hello Triangle
+    float vertices[] = {
+        -0.5f, -0.5f, 0.0f,
+         0.5f, -0.5f, 0.0f,
+         0.0f, 0.5f, 0.0f
+    };
+
+    // Triangle vertex buffer object
+    unsigned int VBO;
+    glGenBuffers(1, &VBO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO); // Setting the buffer we're going to modify to VBO
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    /*
+    glBufferData is a function specifically targeted to copy user-defined data into the currently bound buffer.
+    Its first argument is the type of the buffer we want to copy data into:
+    the vertex buffer object currently bound to the GL_ARRAY_BUFFER target.
+    The second argument specifies the size of the data (in bytes) we want to pass to the buffer;
+    a simple sizeof of the vertex data suffices. The third parameter is the actual data we want to send. 
+    */
+
     // Crashing if glad couldn't load for some reason
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
