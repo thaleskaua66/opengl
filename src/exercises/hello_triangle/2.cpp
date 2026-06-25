@@ -1,3 +1,6 @@
+/*
+Now create the same 2 triangles using two different VAOs and VBOs for their data: solution.
+*/
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 
