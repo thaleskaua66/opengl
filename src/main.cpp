@@ -6,20 +6,14 @@
 #include<sstream>
 #include<string>
 
-#include"shaders.h"
+#include"shaders/shaders.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
-// Shaders
-
 // Start
 int main(int argc, char const *argv[])
 {
-    // Some debug vars
-    int success;
-    char infoLog[512];
-
     // Initializing glfw and setting OPENGL version and profile
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -48,10 +42,11 @@ int main(int argc, char const *argv[])
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // Shaders
-    Shader normal("")
+    Shader normal("shaders/firstVertexShader.glsl", "shaders/firstFragmentShader.glsl");
 
     // Triangle vertices
     float vertices[] = {
+       // coordinates    // colors
        0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, // top
       -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,// bottom left
        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f // bottom right
@@ -75,7 +70,7 @@ int main(int argc, char const *argv[])
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    glUseProgram(shaderProgram);
+    normal.use();
 
     // While loop to make window persistent
     while(!glfwWindowShouldClose(window)) {
@@ -84,7 +79,8 @@ int main(int argc, char const *argv[])
         processInput(window);
 
         // Rendering
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        // glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glBindVertexArray(VAO);
@@ -97,7 +93,7 @@ int main(int argc, char const *argv[])
 
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteProgram(shaderProgram);
+    normal.del();
 
     glfwTerminate();
     return 0;
@@ -110,6 +106,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 
 // Checking the inputs each frame
 void processInput(GLFWwindow* window) {
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
         glfwSetWindowShouldClose(window, true);
+    }
 }

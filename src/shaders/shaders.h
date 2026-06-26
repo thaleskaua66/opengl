@@ -62,6 +62,8 @@ class Shader {
 
             fragment = glCreateShader(GL_FRAGMENT_SHADER);
             glShaderSource(fragment, 1, &fShaderCode, NULL);
+            glCompileShader(fragment);
+
             glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
             if(!success) {
                 glGetShaderInfoLog(fragment, 512, NULL, infoLog);
@@ -89,6 +91,10 @@ class Shader {
             glUseProgram(ID);
         }
 
+        void del(){
+            glDeleteProgram(ID);
+        }
+
         // Utility
         void setBool(const std::string &name, bool value) const {
             glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
@@ -97,6 +103,6 @@ class Shader {
             glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
         }
         void setFloat(const std::string &name, float value) const {
-            glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+            glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
         }
 };

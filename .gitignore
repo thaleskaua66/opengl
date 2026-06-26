@@ -1,5 +1,15 @@
+# build trash
+./src/build/
 *.obj
 *.exe
 *.ilk
 *.pdb
+
+# deleting images that I use for didatic issues (unless textures)
+*.png 
+*.jpg
+!/src/textures/*
+!/src/textures/*
+
+# tasks
 .vscode/

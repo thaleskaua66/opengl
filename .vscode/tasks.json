@@ -4,12 +4,17 @@
             "type": "cppbuild",
             "label": "Build OpenGL",
             "command": "cl.exe",
+            
             "args": [
                 "/Zi",
                 "/EHsc",
                 "/nologo",
                 "/MT",
 
+                "/Fo${workspaceFolder}/src/build/",
+                "/Fd${workspaceFolder}/src/build/vc.pdb",
+                "/ILK:${workspaceFolder}/src/build/${fileBasenameNoExtension}.ilk",
+                
                 "/I",
                 "C:/Users/20261GR.TII_I0015/Documents/opengl/include",
 
@@ -26,11 +31,12 @@
                 "gdi32.lib",
                 "shell32.lib",
 
-                "/OUT:${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "/PDB:${workspaceFolder}/src/build/${fileBasenameNoExtension}.pdb",
+                "/OUT:${fileDirname}\\build\\${fileBasenameNoExtension}.exe"
             ],
 
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
 
             "problemMatcher": [
