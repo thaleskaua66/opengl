@@ -6,7 +6,7 @@
 #include<sstream>
 #include<string>
 
-#include"shaders/shaders.h"
+#include"headers/shaders.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
