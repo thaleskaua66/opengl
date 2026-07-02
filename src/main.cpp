@@ -6,7 +6,7 @@
 #include<sstream>
 #include<string>
 
-#include"shaders/shaders.h"
+#include"headers/shaders.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -51,6 +51,18 @@ int main(int argc, char const *argv[])
       -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,// bottom left
        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f // bottom right
     };
+    // Triangle texture coords
+    float textCoords[] = {
+        0.0f, 0.0f,
+        1.0f, 0.0f,
+        0.5f, 1.0f
+    };
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // TODO: Finalize textures section
 
     // Triangle vertex buffer object
     // VAOS
@@ -79,8 +91,7 @@ int main(int argc, char const *argv[])
         processInput(window);
 
         // Rendering
-        // glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glBindVertexArray(VAO);

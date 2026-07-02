@@ -1,5 +1,6 @@
 # build trash
-./src/build/
+/src/build/
+build/
 *.obj
 *.exe
 *.ilk
@@ -8,6 +9,7 @@
 # deleting images that I use for didatic issues (unless textures)
 *.png 
 *.jpg
+/src/content/
 !/src/textures/*
 !/src/textures/*
 
